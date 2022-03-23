@@ -1,0 +1,45 @@
+.footer {
+	&__column {
+		@media (max-width: $md3+px) {
+			flex: 1 1 auto;
+		}
+	}
+
+	&__copy {
+		@include fz(12);
+		@include lh(40);
+		@include ls(1);
+		font-weight: 700;
+		color: #646667;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		@include fz(12);
+		@include lh(40);
+		@include ls(1);
+		font-weight: 700;
+		color: #646667;
+		margin: 0px 0px 0px 37px;
+		text-transform: uppercase;
+		&:hover {
+			text-decoration: underline;
+		}
+		@media (max-width: $md3+px) {
+			margin: 0px 15px 0px 0px;
+			display: inline-block;
+			@include lh(24);
+		}
+	}
+	&__body {
+		@include flexbox();
+		align-items: center;
+		justify-content: space-between;
+		padding: 42.5px 0px;
+		@media (max-width: $md3+px) {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 20px 0px;
+		}
+	}
+}

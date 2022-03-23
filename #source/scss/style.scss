@@ -1,0 +1,573 @@
+//<МИКСИНЫ>=============================================================================================
+@mixin anim($time, $delay) {
+	-webkit-transition: all $time ease $delay;
+	-moz-transition: all $time ease $delay;
+	-ms-transition: all $time ease $delay;
+	-o-transition: all $time ease $delay;
+	transition: all $time ease $delay;
+}
+@mixin anim_cibic($time, $delay) {
+	-webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+	-moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+	-ms-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+	-o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+}
+@mixin rotate($deg) {
+	-moz-transform: rotate($deg);
+	-ms-transform: rotate($deg);
+	-webkit-transform: rotate($deg);
+	-o-transform: rotate($deg);
+	transform: rotate($deg);
+}
+@mixin scale($num) {
+	-moz-transform: scale($num);
+	-ms-transform: scale($num);
+	-webkit-transform: scale($num);
+	-o-transform: scale($num);
+	transform: scale($num);
+}
+@mixin skew($num) {
+	-moz-transform: skewX($num);
+	-ms-transform: skewX($num);
+	-webkit-transform: skewX($num);
+	-o-transform: skewX($num);
+	transform: skewX($num);
+}
+@mixin cnt($h) {
+	display: flex;
+	flex-direction: column;
+	height: $h;
+	text-align: center;
+	align-items: stretch;
+	justify-content: center;
+}
+@mixin tran($x, $y) {
+	transform: translate($x, $y);
+}
+@mixin tr($x, $y, $z) {
+	transform: translate3d($x, $y, $z);
+}
+@mixin flexbox() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	font-size: 0;
+}
+@mixin flexboxinline() {
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+}
+@mixin flexorder($val) {
+	-webkit-box-ordinal-group: $val;
+	-moz-box-ordinal-group: $val;
+	-ms-flex-order: $val;
+	-webkit-order: $val;
+	order: $val;
+}
+//<ШРИФТЫ>=======================================================================================================
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,700;1,400&display=swap");
+
+//<ПЕРЕМЕННЫЕ>===================================================================================================
+$minwidth: 320px;
+$mw: 1190;
+$md1: $mw + 12;
+$md2: 992.98;
+$md3: 767.98;
+$md4: 479.98;
+$fontfamily: "Montserrat";
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===================================================================================
+@import "_nullstyle";
+
+//<SCSS ОБЩЕЕ>===================================================================================================
+
+%tplborder {
+	border-bottom: 2px double rgb(223, 18, 18);
+}
+
+//@extend %tplborder;
+
+@mixin fz($pxValue, $property: "font-size", $standard-size: 16) {
+	#{$property}: $pxValue + px;
+	#{$property}: $pxValue/$standard-size + rem;
+}
+@mixin lh($pxValue, $property: "line-height", $standard-size: 16) {
+	#{$property}: $pxValue + px;
+	#{$property}: $pxValue/$standard-size + rem;
+}
+@mixin ls($pxValue, $property: "letter-spacing", $standard-size: 16) {
+	#{$property}: $pxValue + px;
+	#{$property}: $pxValue/$standard-size + rem;
+}
+
+//<ОБОЛОЧКА>======================================================================================================
+.wrapper {
+	font-family: $fontfamily;
+	width: 100%;
+	min-height: 100%;
+	height: 100%;
+	overflow: auto;
+	@include flexbox();
+	flex-direction: column;
+}
+//<ОСНОВНАЯ СЕТКА>================================================================================================
+.container {
+	max-width: $mw + px;
+	margin: 0 auto;
+	width: 100%;
+	position: relative;
+	padding: 0px 10px;
+	@media (max-width: $md1+px) {
+		max-width: 970px;
+	}
+	@media (max-width: $md2+px) {
+		max-width: 750px;
+	}
+	@media (max-width: $md3+px) {
+		max-width: none;
+		padding: 0 10px;
+	}
+}
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================
+@import "_header";
+@import "_footer";
+
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+.mainblock {
+	margin: 0px 0px 100px 0px;
+	text-align: center;
+	@media (max-width: $md2+px) {
+		margin: 0px 0px 80px 0px;
+	}
+	@media (max-width: $md3+px) {
+		margin: 0px 0px 50px 0px;
+	}
+	&__text {
+		@include fz(20);
+		@include lh(36);
+		font-weight: 300;
+		color: #646667;
+		max-width: 970px;
+		margin: 0 auto;
+		text-align: center;
+		padding: 50px 0px 40px 0px;
+		@media (max-width: $md3+px) {
+			padding: 30px 0px 20px 0px;
+		}
+		@media (max-width: $md4+px) {
+			padding: 20px 0px 10px 0px;
+			@include fz(16);
+			@include lh(24);
+		}
+	}
+}
+.imageblock {
+	position: relative;
+	overflow: hidden;
+	padding: 0px 0px 42.27% 0px;
+	@media (max-width: $md3+px) {
+		padding: 0px;
+		height: 280px;
+	}
+	&__title {
+		position: absolute;
+		bottom: 20%;
+		right: 1%;
+		@include fz(32);
+		@include lh(48);
+		@include ls(1);
+		z-index: 2;
+		color: #fff;
+		text-shadow: 0 3px 1px rgba(0, 0, 0, 0.6);
+		max-width: 750px;
+		text-transform: uppercase;
+		font-family: "PT Serif";
+		@media (max-width: $md1+px) {
+			@include fz(26);
+			max-width: 640px;
+			right: 0;
+		}
+		@media (max-width: $md2+px) {
+			@include fz(22);
+			max-width: 550px;
+			@include lh(32);
+			right: 0;
+		}
+		@media (max-width: $md3+px) {
+			@include fz(18);
+			@include lh(24);
+			max-width: 450px;
+			right: 0;
+		}
+	}
+
+	&__bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+.bluebg {
+	&::after {
+		content: "";
+		position: absolute;
+		top: -25%;
+		left: -12.5%;
+		width: 35%;
+		height: 125%;
+		background: linear-gradient(198deg, #007397 0%, rgba(0, 115, 115, 0) 100%);
+		@include rotate(20deg);
+		@media (max-width: $md1+px) {
+			left: -25.5%;
+			top: -30%;
+			width: 48%;
+		}
+		@media (max-width: $md2+px) {
+			left: -35.5%;
+			width: 58%;
+		}
+		@media (max-width: 670+px) {
+			left: -45%;
+			width: 68%;
+		}
+		@media (max-width: 640+px) {
+			left: -50%;
+			width: 78%;
+		}
+		@media (max-width: 600+px) {
+			left: -55%;
+			width: 88%;
+		}
+		@media (max-width: 580+px) {
+			left: -60%;
+			width: 98%;
+		}
+		@media (max-width: 480+px) {
+			left: -75%;
+			height: 105%;
+			top: -13%;
+			width: 108%;
+		}
+		@media (max-width: 480+px) {
+			left: -75%;
+			height: 105%;
+			top: -13%;
+		}
+		@media (max-width: 400+px) {
+			left: -95%;
+			height: 105%;
+			top: -13%;
+			width: 120%;
+		}
+		@media (max-width: 360+px) {
+			left: -110%;
+			height: 100%;
+			top: -16%;
+			width: 150%;
+		}
+	}
+}
+.title {
+	color: #3c3f3d;
+	@include fz(32);
+	@include lh(48);
+	@include ls(1);
+	font-family: "PT Serif";
+	text-transform: uppercase;
+	font-weight: 700;
+	@media (max-width: $md2+px) {
+		@include fz(30);
+		@include lh(44);
+	}
+	@media (max-width: $md2+px) {
+		@include fz(24);
+		@include lh(32);
+	}
+}
+.investor {
+	margin: 0px 0px 100px 0px;
+	@media (max-width: $md2+px) {
+		margin: 0px 0px 60px 0px;
+	}
+	@media (max-width: $md3+px) {
+		margin: 0px 0px 50px 0px;
+	}
+	&__title {
+		margin: 0px 0px 50px 0px;
+		@media (max-width: $md3+px) {
+			margin: 0px 0px 20px 0px;
+		}
+	}
+
+	&__text {
+		color: #646667;
+		@include fz(20);
+		@include lh(36);
+		font-weight: 300;
+		max-width: 640px;
+		margin: 0px 0px 40px 0px;
+		@media (max-width: $md3+px) {
+			margin: 0px 0px 20px 0px;
+			@include fz(16);
+			@include lh(26);
+			max-width: none;
+		}
+	}
+
+	&__row {
+		@include flexbox();
+		justify-content: space-between;
+		align-items: center;
+		margin: 0px -5px;
+		@media (max-width: $md3+px) {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+}
+.investor-score {
+	&__column {
+		margin: 0px 0px 25px 0px;
+		padding: 0px 5px;
+		@media (max-width: $md3+px) {
+			flex: 0 0 50%;
+			margin: 0px;
+		}
+	}
+}
+.item {
+	margin: 0px 0px 35px 0px;
+	text-align: center;
+	&__value {
+		font-family: "PT Serif";
+		@include fz(52);
+		color: #007397;
+		margin: 0px 0px 7px 0px;
+		@media (max-width: $md2+px) {
+			@include fz(46);
+		}
+	}
+
+	&__text {
+		@include fz(16);
+		@include lh(32);
+		color: #aec3d4;
+		position: relative;
+		text-align: center;
+		@media (max-width: $md2+px) {
+			@include fz(12);
+		}
+		span {
+			display: inline-block;
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				width: 0;
+				height: 1px;
+				background: #007397;
+				@include anim(0.3s, 0s);
+			}
+		}
+	}
+	&:hover span::after {
+		width: 100%;
+		left: 0;
+	}
+}
+.news {
+	margin: 0px 0px 75px 0px;
+	@media (max-width: $md2+px) {
+		margin: 0px 0px 55px 0px;
+	}
+	@media (max-width: $md3+px) {
+		margin: 0px 0px 45px 0px;
+	}
+	&__header {
+		margin: 0px 0px 57px 0px;
+		@media (max-width: $md3+px) {
+			margin: 0px 0px 20px 0px;
+		}
+	}
+}
+.header-news {
+	@include flexbox();
+	align-items: center;
+	justify-content: space-between;
+	margin: 0px 0px 40px 0px;
+	@media (max-width: $md3+px) {
+		display: block;
+	}
+
+	&__nav {
+		@include flexbox();
+		align-items: center;
+		@media (max-width: $md3+px) {
+			display: block;
+		}
+	}
+}
+.nav-news {
+	&__item {
+		text-align: center;
+		font-weight: 700;
+		@include fz(16);
+		@include lh(16);
+		@include ls(1);
+		margin: 0px 0px 0px 100px;
+		color: #d3cfce;
+		cursor: pointer;
+		@media (max-width: $md2+px) {
+			margin: 0px 0px 0px 50px;
+		}
+		@media (max-width: $md3+px) {
+			text-align: left;
+			margin: 10px 0px 0px 0px;
+		}
+	}
+}
+.active {
+	color: #007397;
+}
+.item-news {
+	@include flexbox();
+	margin: 0px -15px;
+	@media (max-width: $md1+px) {
+		margin: 0px -10px;
+	}
+	@media (max-width: $md3+px) {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	@media (max-width: $md4+px) {
+		flex-direction: column;
+	}
+	&__column {
+		flex: 0 0 33.333%;
+		padding: 0px 15px;
+		margin: 0px 0px 25px 0px;
+		@media (max-width: $md1+px) {
+			padding: 0px 10px;
+		}
+		@media (max-width: $md3+px) {
+			flex: 0 0 50%;
+		}
+	}
+}
+.content-news {
+	@include flexbox();
+	flex-direction: column;
+	height: 100%;
+	&__text {
+		flex: 1 1 auto;
+		color: #646667;
+		@include fz(16);
+		@include lh(32);
+		margin: 32px 0px;
+	}
+
+	&__link {
+		display: block;
+		color: #007397;
+		@include fz(16);
+		@include lh(16);
+		@include ls(1);
+		font-weight: 700;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+.header-content-news {
+	position: relative;
+	padding: 0px 0px 100.1% 0px;
+	&__content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		padding: 25px 30px;
+		@media (max-width: $md1+px) {
+			padding: 25px 20px;
+		}
+	}
+
+	&__category {
+		font-weight: 700;
+		@include fz(12);
+		@include lh(16);
+		@include ls(0.75);
+		color: #fff;
+		text-transform: uppercase;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		@include fz(24);
+		@include lh(32);
+		@include ls(1);
+		color: #fff;
+		text-transform: uppercase;
+		position: absolute;
+		left: 0;
+		width: 100%;
+		padding: 0px 30px 70px 30px;
+		bottom: 0;
+		&:hover {
+			text-decoration: underline;
+		}
+		@media (max-width: $md1+px) {
+			@include fz(18);
+			@include lh(26);
+			padding: 0px 20px 40px 20px;
+		}
+	}
+
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+}
+.bluebg-l {
+	&::after {
+		content: "";
+		position: absolute;
+		top: -25%;
+		left: -19%;
+		width: 100%;
+		height: 135%;
+		background: linear-gradient(198deg, #007397 0%, rgba(0, 115, 115, 0) 100%);
+		@include rotate(20deg);
+	}
+}
+.map {
+	&__title {
+		margin: 0px 0px 40px 0px;
+		@media (max-width: $md3+px) {
+			margin: 0px 0px 20px 0px;
+		}
+	}
+	&__map {
+		padding: 0px 0px 38.3% 0px;
+		min-height: 250px;
+	}
+}
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>=============================================================
+@import "_forms";

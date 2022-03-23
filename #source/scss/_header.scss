@@ -1,0 +1,146 @@
+header {
+	position: relative;
+	z-index: 50;
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #fff;
+		z-index: 4;
+	}
+	@media (max-width: $md3+px) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background-color: #fff;
+	}
+}
+.header {
+	&__body {
+		@include flexbox();
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__column {
+		padding: 30.32px 0px;
+		@media (max-width: $md2+px) {
+			padding: 20px 0px;
+		}
+		@media (max-width: $md3+px) {
+			padding: 15px 0px;
+		}
+	}
+
+	&__logo {
+		display: inline-block;
+		max-width: 172px;
+		position: relative;
+		z-index: 6;
+		img {
+			max-width: 100%;
+		}
+		@media (max-width: $md2+px) {
+			width: 125px;
+		}
+		@media (max-width: $md3+px) {
+			width: 175px;
+		}
+	}
+}
+.header-menu {
+	&__menu {
+		@media (max-width: $md3+px) {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: -110%;
+			background-color: #fff;
+			z-index: 2;
+			padding: 50px 10px 20px 10px;
+			overflow: auto;
+			@include anim(0.3s, 0s);
+			&.active {
+				left: 0;
+			}
+		}
+	}
+
+	&__list {
+		@include flexbox();
+		li {
+			position: relative;
+			z-index: 28;
+			margin: 0px 0px 0px 35px;
+			@media (max-width: $md1+px) {
+				margin: 0px 0px 0px 25px;
+			}
+			@media (max-width: $md2+px) {
+				margin: 0px 0px 0px 15px;
+			}
+			@media (max-width: $md3+px) {
+				margin: 0px 0px 10px 0px;
+				&:last-child {
+					margin: 0px 0px 0px 0px;
+				}
+			}
+		}
+		@media (max-width: $md3+px) {
+			display: block;
+		}
+	}
+
+	&__link {
+		@include fz(12);
+		display: block;
+		@include lh(40);
+		@include ls(1);
+		color: #646667;
+		font-weight: 700;
+		@include anim(0.3s, 0s);
+		@media (max-width: $md3+px) {
+			@include lh(34);
+			@include fz(18);
+		}
+		&_circle {
+			padding: 0px 42px 0px 0px;
+			background: url("../img/SVG/Page\ 1.svg") right no-repeat;
+			@media (max-width: $md2+px) {
+				background: url("../img/SVG/Page\ 1.svg") right / 18px no-repeat;
+				padding: 0px 30px 0px 0px;
+			}
+			@media (max-width: $md3+px) {
+				background: url("../img/SVG/Page\ 1.svg") 150px / 18px no-repeat;
+			}
+		}
+		span {
+			position: relative;
+			display: block;
+			@media (max-width: $md3+px) {
+				display: inline-block;
+			}
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				width: 0;
+				height: 1px;
+				background: #007397;
+				@include anim(0.3s, 0s);
+			}
+			&:hover {
+				color: #007397;
+			}
+			&:hover:after {
+				left: 0;
+				width: 100%;
+			}
+		}
+	}
+}
